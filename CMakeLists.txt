@@ -1,27 +1,26 @@
-# 指定最小 CMake 版本要求
 cmake_minimum_required(VERSION 3.9)
-# 设置项目名称
 project(answer)
 
 set(CMAKE_CXX_STANDARD 17)
 
+add_subdirectory(answer)
+
 #[[
-添加可执行文件 target，类似于原来 Makefile 的：
-
-    answer: main.o answer.o
-    main.o: main.cpp answer.hpp
-    answer.o: answer.cpp answer.hpp
-
-CMake 会自动找到依赖的头文件，因此不需要特别指定，
-当头文件修改的时候，会重新编译依赖它的目标文件。
+拆分了 CURL 和 WolframAlpha 相关代码到单独的子目录中，
+其中分别创建了两个库目标：curl_wrapper 和 wolfram，
+可以在本项目的其它地方 link。
 #]]
-add_executable(answer helloworld.cc answer.cc)
+add_subdirectory(curl_wrapper)
+add_subdirectory(wolfram)
+
+add_executable(helloworld helloworld.cc)
+target_link_libraries(helloworld libanswer)
 
 #[[
 使用如下命令构建本项目：
 
     cmake -B build      # 生成构建目录
     cmake --build build # 执行构建
-    ./build/answer      # 运行 answer 程序
+    ./build/answer_app  # 运行 answer_app 程序
 #]]
 

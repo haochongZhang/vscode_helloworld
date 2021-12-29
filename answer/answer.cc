@@ -1,8 +1,8 @@
-#include "answer.h"
+#include "include/answer.h"
 
 namespace answer {
 
-int find_the_ultimate_anser() {
+int find_the_ultimate_answer() {
     return 42;
 }
 
