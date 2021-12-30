@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "answer.h"
+
+#include "answer/include/answer.h"
 
 using namespace std;
 
@@ -13,5 +14,5 @@ int main(int argc, const char *argv[]) {
     }
     cout << endl;
 
-    cout << answer::find_the_ultimate_anser() << endl;
+    cout << answer::find_the_ultimate_answer() << endl;
 }
